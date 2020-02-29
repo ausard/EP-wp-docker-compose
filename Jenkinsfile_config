@@ -16,8 +16,8 @@ pipeline {
          steps {
                // cleanWs()               
             dir("/tmp/wp"){
-               sh "rm -rf *"
                sh "docker-compose down"
+               sh "rm -rf *"
                git 'https://github.com/ausard/EP_tsk2.git'                                    
             }
             
