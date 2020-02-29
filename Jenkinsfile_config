@@ -25,7 +25,9 @@ pipeline {
       }
       stage('Copy config Wordpress'){
          steps{
-            sh "cp wp-conf/config.php /wordpress/wp-config.php"
+            dir("/tmp/wp"){
+               sh "cp wp-conf/config.php /wordpress/wp-config.php"
+               }
             }               
          }              
    }
