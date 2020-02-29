@@ -17,7 +17,7 @@ pipeline {
       }
       stage('Get latest version of Wordpress'){
          steps{
-            sh label: 'Get Wordpress', script: "install.sh"
+            sh label: 'Get Wordpress', script: "./install.sh"
          }
       }    
       stage('Start up our wordpress development'){
