@@ -6,6 +6,12 @@ pipeline {
       timestamps()
    }
    stages {
+      stage('Git') {
+            steps {
+                echo '> Checking out the Git version control ...'
+                checkout scm
+            }
+        }
       stage('Git clone config files for development') {
          steps {
             //Delete Workspace before build project
