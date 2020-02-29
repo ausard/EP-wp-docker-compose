@@ -22,7 +22,7 @@ pipeline {
          }
          post{
              success{
-                 sh label: 'Deploy', script: "docker-compose up -d"
+                 sh label: 'Deploy', script: "sudo docker-compose up -d"
              }
          }
       }          
