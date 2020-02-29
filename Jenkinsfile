@@ -4,7 +4,6 @@ pipeline {
    options{
       //Time display
       timestamps()
-      checkout scm
    }
    stages {
       stage('Git clone project') {
