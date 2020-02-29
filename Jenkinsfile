@@ -27,11 +27,12 @@ pipeline {
             sh label: 'Get Wordpress', script: "./install.sh"
          }         
       }
-      post{
+          
+   }
+   post{
              success{                
               sh "docker-compose build"
               sh "docker-compose up -d"             
              }
-         }          
-   }
+         }      
 }   
