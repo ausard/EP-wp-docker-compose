@@ -16,7 +16,7 @@ pipeline {
          steps {
                // cleanWs()               
                // Get code from a GitHub repository
-            dir("/tmp/wordpress"){
+            dir("/tmp/wp"){
                sh "rm -rf *"
                git 'https://github.com/ausard/EP_tsk2.git'                                    
             }
@@ -25,7 +25,7 @@ pipeline {
       }
       stage('Get latest version of Wordpress'){
          steps{
-            dir("/tmp/wordpress"){
+            dir("/tmp/wp"){
                sh "chmod +x install.sh"
                sh label: 'Get Wordpress', script: "./install.sh"
             }               
@@ -34,7 +34,7 @@ pipeline {
    }
    post{
       success{  
-         dir("/tmp/wordpress"){
+         dir("/tmp/wp"){
             sh "docker-compose build"
             sh "docker-compose up -d"
          }         
