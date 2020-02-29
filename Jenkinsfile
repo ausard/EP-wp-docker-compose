@@ -14,23 +14,29 @@ pipeline {
       //   }
       stage('Git clone config files for development') {
          steps {
-            cleanWs()               
+               // cleanWs()               
                // Get code from a GitHub repository
-            git 'https://github.com/ausard/EP_tsk2.git'                                    
+            dir("/wordpress"){
+               git 'https://github.com/ausard/EP_tsk2.git'                                    
+            }
+            
          }
       }
       stage('Get latest version of Wordpress'){
          steps{
+            dir("/wordpress"){
                sh "chmod +x install.sh"
                sh label: 'Get Wordpress', script: "./install.sh"
+            }               
          }         
-      }
-          
+      }          
    }
    post{
       success{  
-         sh "docker-compose build"
-         sh "docker-compose up -d"
+         dir("/wordpress"){
+            sh "docker-compose build"
+            sh "docker-compose up -d"
+         }         
       }
    }      
 }   
