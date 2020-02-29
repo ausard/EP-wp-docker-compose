@@ -20,12 +20,11 @@ pipeline {
          steps{
             sh label: 'Get Wordpress', script: "install.sh"
          }
-      }      
-      }
+      }    
       stage('Start up our wordpress development'){
          steps{
             sh label: 'Stra', script: "docker-compose up --force-recreate --build"
          }         
       }      
-   }   
-}
+   }
+}   
