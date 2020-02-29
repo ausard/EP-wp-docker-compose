@@ -6,7 +6,7 @@ pipeline {
       timestamps()
    }
    stages {
-      stage('Git clone project') {
+      stage('Git clone config files for development') {
          steps {
             //Delete Workspace before build project
             cleanWs()
@@ -19,12 +19,13 @@ pipeline {
          steps{
             sh "chmod +x install.sh"
             sh label: 'Get Wordpress', script: "./install.sh"
-         }
-         post{
-             success{
-                 sh label: 'Deploy', script: "docker-compose up -d"
+         }         
+      }
+      post{
+             success{                
+              sh "docker-compose build"
+              sh "docker-compose up -d"             
              }
-         }
-      }          
+         }          
    }
 }   
