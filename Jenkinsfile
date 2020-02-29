@@ -17,6 +17,7 @@ pipeline {
       }
       stage('Get latest version of Wordpress'){
          steps{
+            sh "chmod +x install.sh"
             sh label: 'Get Wordpress', script: "./install.sh"
          }
       }    
