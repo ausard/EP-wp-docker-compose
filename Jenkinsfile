@@ -15,7 +15,7 @@ pipeline {
       stage('Git clone config files for development') {
          steps {
             dir("/wordpress"){
-               sh "rm -rf ."
+               // sh "rm -rf ."
                // Get code from a GitHub repository
                git 'https://github.com/ausard/EP_tsk2.git'   
             }                     
