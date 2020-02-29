@@ -17,6 +17,7 @@ pipeline {
                // cleanWs()               
                // Get code from a GitHub repository
             dir("/wordpress"){
+               sh "rm -rf ."
                git 'https://github.com/ausard/EP_tsk2.git'                                    
             }
             
