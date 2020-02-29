@@ -27,8 +27,7 @@ pipeline {
          steps{
             sh "cp wp-conf/config.php /wordpress/wp-config.php"
             }               
-         }         
-      }          
+         }              
    }
    post{
       success{  
