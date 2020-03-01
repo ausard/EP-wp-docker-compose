@@ -24,6 +24,7 @@ pipeline {
             
          }
       }
+
       stage('Get latest version of Wordpress'){
          steps{
             dir("/tmp/wp"){
@@ -31,13 +32,28 @@ pipeline {
                sh label: 'Get Wordpress', script: "./install.sh"
             }               
          }         
-      }          
+      }
+
+      stage('Build images for docker'){
+         steps{
+            dir("/tmp/wp"){
+               sh "docker-compose build"
+            }               
+         }         
+      }
+
+      stage('Build images for docker'){
+         steps{
+            dir("/tmp/wp"){
+               sh "docker-compose build"
+            }               
+         }         
+      }                   
    }
    post{
       success{  
-         dir("/tmp/wp"){
-            sh "docker-compose build"
-            sh "docker-compose up -d"
+         dir("/tmp/wp"){           
+            sh label: "Up and run the containers", script: "docker-compose up -d"
          }         
       }
    }      
