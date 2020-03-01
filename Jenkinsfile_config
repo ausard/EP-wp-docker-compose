@@ -6,18 +6,10 @@ pipeline {
       timestamps()
    }
    stages {
-      // stage('Git') {
-      //       steps {
-      //           echo '> Checking out the Git version control ...'
-      //           checkout scm
-      //       }
-      //   }
       stage('Git clone new config files for development') {
          steps {
-               // cleanWs()               
             dir("/tmp/wp"){
-               sh "docker-compose down"
-               // sh "rm -rf *"
+               sh label:"Stop contaioners and del network", script: "docker-compose down"
                git 'https://github.com/ausard/EP_tsk2.git'                                    
             }
          }
@@ -25,17 +17,29 @@ pipeline {
       stage('Copy config Wordpress'){
          steps{
             dir("/tmp/wp"){
-               sh "cp wp-conf/wp-config.php /wordpress/wp-config.php"
+               sh label:"copy new wordpress config", script: "cp wp-conf/wp-config.php /wordpress/wp-config.php"
                }
             }               
-         }              
+         }
+      stage('Build images for docker with new configs'){
+         steps{
+            dir("/tmp/wp"){
+               sh label: "Build images", script:"docker-compose build"
+            }               
+         }         
+      }
+
+      stage('Start docker containers'){
+         steps{
+            dir("/tmp/wp"){           
+            sh label: "Up and run the containers", script: "docker-compose up -d"
+            }                 
+         }         
+      }              
    }
    post{
       success{  
-         dir("/tmp/wp"){
-            sh "docker-compose build"
-            sh "docker-compose up -d"
-         }         
+          echo "Open your browser at http://localhost:8081/"
       }
    }      
 }   

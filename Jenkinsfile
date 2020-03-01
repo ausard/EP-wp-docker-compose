@@ -44,17 +44,15 @@ pipeline {
 
       stage('Build images for docker'){
          steps{
-            dir("/tmp/wp"){
-               sh "docker-compose build"
-            }               
+            dir("/tmp/wp"){           
+            sh label: "Up and run the containers", script: "docker-compose up -d"
+            }                 
          }         
       }                   
    }
    post{
       success{  
-         dir("/tmp/wp"){           
-            sh label: "Up and run the containers", script: "docker-compose up -d"
-         }         
+          echo "Open your browser at http://localhost:8081/"
       }
    }      
 }   
