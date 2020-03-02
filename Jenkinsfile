@@ -6,7 +6,6 @@ pipeline {
       timestamps()
    }
    stages {
-      
       stage('Git clone config files for development') {
          steps {
                // cleanWs()               
@@ -36,7 +35,7 @@ pipeline {
       stage('Build images for docker'){
          steps{
             dir("/tmp/wp"){           
-            sh label: "Up and run the containers", script: "docker-compose up -d"
+               sh label: "Up and run the containers", script: "docker-compose up -d"
             }                 
          }         
       }                   
