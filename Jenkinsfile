@@ -6,12 +6,7 @@ pipeline {
       timestamps()
    }
    stages {
-      // stage('Git') {
-      //       steps {
-      //           echo '> Checking out the Git version control ...'
-      //           checkout scm
-      //       }
-      //   }
+      
       stage('Git clone config files for development') {
          steps {
                // cleanWs()               
@@ -20,11 +15,9 @@ pipeline {
             dir("/tmp/wp"){
                sh "rm -rf *"
                git 'https://github.com/ausard/EP_tsk2.git'                                    
-            }
-            
+            }            
          }
       }
-
       stage('Get latest version of Wordpress'){
          steps{
             dir("/tmp/wp"){
@@ -33,7 +26,6 @@ pipeline {
             }               
          }         
       }
-
       stage('Build images for docker'){
          steps{
             dir("/tmp/wp"){
@@ -41,7 +33,6 @@ pipeline {
             }               
          }         
       }
-
       stage('Build images for docker'){
          steps{
             dir("/tmp/wp"){           
