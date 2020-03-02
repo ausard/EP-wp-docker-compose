@@ -32,7 +32,7 @@ pipeline {
             }               
          }         
       }
-      stage('Build images for docker'){
+      stage('Up and run the container'){
          steps{
             dir("/tmp/wp"){           
                sh label: "Up and run the containers", script: "docker-compose up -d"
