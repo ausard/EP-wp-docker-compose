@@ -28,6 +28,8 @@ pipeline {
       stage('Build images for docker'){
          steps{
             dir("/tmp/wp"){
+               sh "chmod +x remove_old_containers.sh"
+               sh label: 'Stop and remove old containers', script: "./remove_old_containers.sh"
                sh "docker-compose build"
             }               
          }         

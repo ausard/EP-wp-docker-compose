@@ -23,7 +23,7 @@ pipeline {
          }
       stage('Build images for docker with new configs'){
          steps{
-            dir("/tmp/wp"){
+            dir("/tmp/wp"){               
                sh label: "Build images", script:"docker-compose build"
             }               
          }         
