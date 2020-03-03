@@ -1,5 +1,5 @@
 ## DEPLOYING WORDPRESS AS A MULTI-CONTAINER APPLICATION USE DOCKER-COMPOSE FILE  
-
+  
 This repository contains configuration files for our multi-container application.  
 ---
 
