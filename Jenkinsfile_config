@@ -9,8 +9,8 @@ pipeline {
       stage('Git clone new config files for development') {
          steps {
             dir("/tmp/wp"){
+               git 'https://github.com/ausard/EP_tsk2.git'
                sh label:"Stop contaioners and del network", script: "docker-compose down"
-               git 'https://github.com/ausard/EP_tsk2.git'                                    
             }
          }
       }
@@ -28,7 +28,6 @@ pipeline {
             }               
          }         
       }
-
       stage('Start docker containers'){
          steps{
             dir("/tmp/wp"){           
