@@ -13,7 +13,7 @@ pipeline {
             sh "rm -rf /wordpress/*"
             dir("/tmp/wp"){
                sh "rm -rf *"
-               git 'https://github.com/ausard/EP_tsk2.git'                                    
+               git 'https://github.com/ausard/EP-wp-docker-compose.git'                                    
             }            
          }
       }

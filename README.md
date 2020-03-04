@@ -3,11 +3,11 @@
 This repository contains configuration files for our multi-container application.  
 ---
 
-Folders [nginx-conf](https://github.com/ausard/EP_tsk2/tree/master/nginx-conf), [wp-conf](https://github.com/ausard/EP_tsk2/tree/master/wp-conf) contains the config files of the respective containers.  
+Folders [nginx-conf](https://github.com/ausard/EP-wp-docker-compose/tree/master/nginx-conf), [wp-conf](https://github.com/ausard/EP-wp-docker-compose/tree/master/wp-conf) contains the config files of the respective containers.  
 
 ---  
 
-Folder [php](https://github.com/ausard/EP_tsk2/tree/master/php) and file [Dockerfile](https://github.com/ausard/EP_tsk2/blob/master/php/Dockerfile) - file for our php image  
+Folder [php](https://github.com/ausard/EP-wp-docker-compose/tree/master/php) and file [Dockerfile](https://github.com/ausard/EP-wp-docker-compose/blob/master/php/Dockerfile) - file for our php image  
 
 ---
 ### Files
