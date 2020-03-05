@@ -1,17 +1,21 @@
-name: Docker Image CI
+name: Main
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v1
-    - name: sh
-      shell: sh
-      working-directory: .
-      run: sh install.sh
-    - uses: actions/checkout@v1
-    - name: Build the docker-compose stack
-      run: docker-compose up -d
+    - name: "Checkout Project"
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: "Docker Build"
+      run: docker-compose --log-level INFO up -d --build
+
+    - name: "Docker Logs"
+      run: docker-compose logs
 
